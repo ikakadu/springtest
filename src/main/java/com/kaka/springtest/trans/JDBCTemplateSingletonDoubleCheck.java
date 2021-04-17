@@ -2,17 +2,25 @@ package com.kaka.springtest.trans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+@Component
 public class JDBCTemplateSingletonDoubleCheck {
     @Autowired
-    private static DataSource dataSource;
+    private  DataSource dataSource;
 
 
 
-//    private static DataSource ds;
+    private static DataSource ds;
+
+    @PostConstruct
+    private void setDataSource(){
+        ds = dataSource;
+    }
 
 
 
@@ -24,7 +32,7 @@ public class JDBCTemplateSingletonDoubleCheck {
         if (jdbcTemplate == null) {
             synchronized (JDBCTemplateSingletonDoubleCheck.class) {
                 if (jdbcTemplate == null) {
-                    jdbcTemplate = new JdbcTemplate(dataSource);
+                    jdbcTemplate = new JdbcTemplate(ds);
                 }
             }
         }

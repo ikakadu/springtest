@@ -1,6 +1,9 @@
 package com.kaka.springtest;
 
 import com.kaka.springtest.trans.JDBCTemplateSingletonDoubleCheck;
+import com.kaka.springtest.trans.JDBCTemplateSingletonStatic;
+import com.kaka.springtest.trans.Serv;
+import com.kaka.springtest.trans.Tr;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,13 @@ public class TransTest {
     @Autowired
 //    @Qualifier("myDbcp2DataSource")
     private DataSource dataSource;
+
+    @Autowired
+    Tr tr;
+
+    @Autowired
+    Serv serv;
+
 
     @Test
     public void tt(){
@@ -35,13 +45,16 @@ public class TransTest {
 
     @Test
     public void f2(){
-
-
         String queryStr = "select * from job";
-        final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonDoubleCheck.getInstance();
+        final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonStatic.getInstance();
         jdbcTemplate.query(queryStr, rs->{
             System.out.println(rs.getString("job_title"));
         });
+    }
+
+    @Test
+    public void f3() throws Exception {
+        serv.updateSalary();
     }
 
 }

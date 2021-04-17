@@ -1,3 +1,4 @@
+/*
 package com.kaka.springtest.trans;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -24,4 +25,4 @@ public class ApplicationConfig {
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
         return dataSource;
     }   
-}
+}*/
