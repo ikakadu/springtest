@@ -1,5 +1,6 @@
 package com.kaka.springtest;
 
+import com.kaka.springtest.trans.JDBCTemplateSingletonDoubleCheck;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,17 @@ public class TransTest {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String queryStr = "select * from job";
 
+        jdbcTemplate.query(queryStr, rs->{
+            System.out.println(rs.getString("job_title"));
+        });
+    }
+
+    @Test
+    public void f2(){
+
+
+        String queryStr = "select * from job";
+        final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonDoubleCheck.getInstance();
         jdbcTemplate.query(queryStr, rs->{
             System.out.println(rs.getString("job_title"));
         });
