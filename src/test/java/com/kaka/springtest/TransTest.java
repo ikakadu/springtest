@@ -53,7 +53,7 @@ public class TransTest {
     }
 
     @Test
-    public void transSpreadTest() throws Exception {
+    public void transSpreadTest(){
         serv.updateSalary();
     }
 
