@@ -28,8 +28,8 @@ public class Serv {
 //        throw new RuntimeException();
     }
 
-//    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRES_NEW)
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    @Transactional(propagation = Propagation.REQUIRED)
     public void updateJob() {
         String sql = "update job set job_title = '开发工程师1'  where  job_id = 1";
         final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonStatic.getInstance();

@@ -34,7 +34,7 @@ public class TransTest {
     }
 
     @Test
-    public void f(){
+    public void jdbcTest1(){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String queryStr = "select * from job";
 
@@ -44,7 +44,7 @@ public class TransTest {
     }
 
     @Test
-    public void f2(){
+    public void jdbcTest2(){
         String queryStr = "select * from job";
         final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonStatic.getInstance();
         jdbcTemplate.query(queryStr, rs->{
@@ -53,7 +53,7 @@ public class TransTest {
     }
 
     @Test
-    public void f3() throws Exception {
+    public void transSpreadTest() throws Exception {
         serv.updateSalary();
     }
 
