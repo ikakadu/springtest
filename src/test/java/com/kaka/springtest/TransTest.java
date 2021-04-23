@@ -1,17 +1,16 @@
 package com.kaka.springtest;
 
-import com.kaka.springtest.trans.JDBCTemplateSingletonDoubleCheck;
-import com.kaka.springtest.trans.JDBCTemplateSingletonStatic;
-import com.kaka.springtest.trans.Serv;
-import com.kaka.springtest.trans.Tr;
+import com.kaka.springtest.trans.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @SpringBootTest
@@ -27,6 +26,12 @@ public class TransTest {
 
     @Autowired
     Serv serv;
+
+    @Autowired
+    MyRunable run;
+
+    @Autowired
+    ApplicationContext ac;
 
 
     @Test
@@ -53,17 +58,21 @@ public class TransTest {
         });
     }
 
-    @Test
-    public void transSpreadTest(){
-        serv.updateSalary();
-    }
-
-    @Autowired
-    ApplicationContext ac;
 
     @Test
     public void contextLoads() {
         System.out.println(ac);
     }
 
+
+
+    @Test
+    public void transSpreadTest(){
+        System.out.println("开始");
+        serv.updateSalary();
+//        new Thread(run,"num1").start();
+//        new Thread(run,"num2").start();
+//        new Thread(run,"num3").start();
+
+    }
 }

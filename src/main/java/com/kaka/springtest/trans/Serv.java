@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class Serv {
     @Transactional(propagation = Propagation.REQUIRED)
-    public void updateSalary(){
-        String sql = "update salary set salary = 22  where  emp_id = 1";
+    public synchronized void updateSalary(){
+        String sql = "update salary set salary = salary+1  where  emp_id = 1";
         final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonStatic.getInstance();
         jdbcTemplate.update(sql);
 
