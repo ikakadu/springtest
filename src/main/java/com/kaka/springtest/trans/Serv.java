@@ -11,17 +11,20 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-@EnableTransactionManagement(proxyTargetClass = true)
-@EnableAspectJAutoProxy(exposeProxy = true)
+//@EnableTransactionManagement(proxyTargetClass = true)
+//@EnableAspectJAutoProxy(exposeProxy = true)
 public class Serv {
     @Transactional(propagation = Propagation.REQUIRED)
     public synchronized void updateSalary(){
+        System.out.println("调用updateSalary");
         String sql = "update salary set salary = salary+1  where  emp_id = 1";
         final JdbcTemplate jdbcTemplate = JDBCTemplateSingletonStatic.getInstance();
         jdbcTemplate.update(sql);
 
-        Serv s = (Serv) AopContext.currentProxy();
-        s.updateEmployee();
+//        Serv s = (Serv) AopContext.currentProxy();
+//        s.updateEmployee();
+
+        updateEmployee();
 //        updateJob();
         System.out.println("调用结束");
 //        throw new RuntimeException();

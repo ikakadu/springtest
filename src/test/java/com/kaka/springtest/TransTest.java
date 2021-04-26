@@ -68,9 +68,9 @@ public class TransTest {
 
     @Test
     public void transSpreadTest(){
-        System.out.println("开始");
-        serv.updateSalary();
-//        new Thread(run,"num1").start();
+        System.out.println("开始transSpreadTest");
+//        serv.updateSalary();
+        new Thread(run,"num1").start();
 //        new Thread(run,"num2").start();
 //        new Thread(run,"num3").start();
 
